@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 
-const apiUrl = 'https://127.0.0.1:3000/';
+const apiUrl = 'https://localhost:3000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +13,8 @@ const apiUrl = 'https://127.0.0.1:3000/';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+
+  @Output() hideOrShowMenu = new EventEmitter<boolean>();
 
   constructor(public jwtHelper: JwtHelperService, private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -51,4 +53,14 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
+
+  hideMenu() {
+    this.hideOrShowMenu.emit(true);
+  }
+
+  showMenu() {
+    this.hideOrShowMenu.emit(false);
+  }
+
+
 }

@@ -1,13 +1,15 @@
 <div class="login-page" [@routerTransition]>
     <div class="row justify-content-md-center">
         <div class="col-md-5">
-            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+            <a [routerLink]="['/home']">
+                <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+            </a>
             <h1>Controle de Lutadores</h1>
             
             <div>
                 <ngb-alert [type]="'danger'" *ngIf="!closed" (close)="closed=true"><p><strong>Login: </strong>teste@teste.com</p><strong>Senha: </strong>teste</ngb-alert>
             </div>
-                
+            
             
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 

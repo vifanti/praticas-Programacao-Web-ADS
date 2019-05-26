@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
     selector: 'app-header',
@@ -8,9 +10,15 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
-    public user = (JSON.parse(localStorage.getItem('currentUser')));
+    user: User;
+    returnUrl: string;
 
-    constructor (public router: Router) {
+
+    constructor (
+        public router: Router,
+        private authService: AuthService,
+        ) {
+
 
         this.router.events.subscribe(val => {
             if (
@@ -25,6 +33,9 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this.pushRightClass = 'push-right';
+        this.authService.currentUser.subscribe(
+            user => this.user = user
+        );
     }
 
     isToggled(): boolean {
@@ -37,12 +48,11 @@ export class HeaderComponent implements OnInit {
         dom.classList.toggle(this.pushRightClass);
     }
 
-    rltAndLtr() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle('rtl');
+    onLoggedout() {
+        this.authService.logout();
     }
 
-    onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+    onClickLogin() {
+        this.authService.hideMenu();
     }
 }
