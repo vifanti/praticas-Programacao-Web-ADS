@@ -9,12 +9,11 @@ const apiUrl = 'https://localhost:3000/';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  @Output() hideOrShowMenu = new EventEmitter<boolean>();
+  @Output() screenPicker = new EventEmitter<string>();
 
   constructor(public jwtHelper: JwtHelperService, private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -22,7 +21,7 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    const user = (JSON.parse(localStorage.getItem('currentUser')));
+    const user = JSON.parse(localStorage.getItem('currentUser'));
 
     // Check whether the token is expired and return true or false
     if (!user) {
@@ -36,16 +35,21 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${apiUrl}users/authenticate`, { email, password })
-    .pipe(map(user => {
-      // login successful if there's a jwt token in the response
-      if (user && user.token) {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-      }
-      return user;
-    }));
+    return this.http.post<any>(`${apiUrl}users/authenticate`, { email, password }).pipe(
+      map(user => {
+        this.startSession(user);
+        return user;
+      })
+    );
+  }
+
+  startSession(user) {
+    // login successful if there's a jwt token in the response
+    if (user && user.token) {
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      this.currentUserSubject.next(user);
+    }
   }
 
   logout() {
@@ -54,13 +58,19 @@ export class AuthService {
     this.currentUserSubject.next(null);
   }
 
-  hideMenu() {
-    this.hideOrShowMenu.emit(true);
+  showLogin() {
+    this.screenPicker.emit('login');
   }
 
-  showMenu() {
-    this.hideOrShowMenu.emit(false);
+  hideLogin() {
+    this.screenPicker.emit('');
   }
 
+  showSignup() {
+    this.screenPicker.emit('signup');
+  }
 
+  hideSignup() {
+    this.screenPicker.emit('');
+  }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../../router.animations';
+import { routerTransition } from '../router.animations';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { Lutador } from '../../shared/models/lutador';
-import { LutadorService } from '../../shared/services/lutador.service';
-import { CalculoCategoriaService } from '../../shared/services/calculo-categoria.service';
+import { Lutador } from '../shared/models/lutador';
+import { LutadorService } from '../shared/services/lutador.service';
+import { CalculoCategoriaService } from '../shared/services/calculo-categoria.service';
 
 @Component({
   selector: 'app-lutador-detalhe',

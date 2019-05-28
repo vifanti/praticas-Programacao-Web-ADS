@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../../router.animations';
+import { routerTransition } from '../router.animations';
 
 import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LutadorService } from '../../shared/services/lutador.service';
-import { Lutador } from '../../shared/models/lutador';
+import { LutadorService } from '../shared/services/lutador.service';
+import { Lutador } from '../shared/models/lutador';
 
 @Component({
   selector: 'app-lutador-novo',
@@ -39,7 +39,7 @@ export class LutadorNovoComponent implements OnInit {
     .subscribe(res => {
       const id = res['id'];
       this.isLoadingResults = false;
-      this.router.navigate(['/lutadores']);
+      this.router.navigate(['/lutadores' + id]);
     }, (err) => {
       console.log(err);
       this.isLoadingResults = false;

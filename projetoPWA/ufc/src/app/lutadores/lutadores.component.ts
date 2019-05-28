@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../../router.animations';
-import { Lutador } from '../../shared/models/lutador';
-import { LutadorService } from '../../shared/services/lutador.service';
+import { routerTransition } from '../router.animations';
+import { Lutador } from '../shared/models/lutador';
+import { LutadorService } from '../shared/services/lutador.service';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
-import { CalculoCategoriaService } from '../../shared/services/calculo-categoria.service';
+import { CalculoCategoriaService } from '../shared/services/calculo-categoria.service';
 import { async } from 'q';
 
 @Component({

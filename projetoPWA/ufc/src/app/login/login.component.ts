@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     submitted = false;
     returnUrl: string;
     error = '';
-    closed = false;
     private routeSub: any;
 
     constructor(
@@ -39,15 +38,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
+        // Quando sair da tela de login e ir para qualquer endereço
         this.routeSub = this.router.events.subscribe((event) => {
             if (event instanceof NavigationStart) {
-                this.authenticationService.showMenu();
+                this.authenticationService.hideLogin();
             }
         });
     }
 
+    // Exibe tela de login quando carrega o component
     ngAfterViewInit(): void {
-        setTimeout(() => this.authenticationService.hideMenu());
+        setTimeout(() => this.authenticationService.showLogin());
     }
 
     // convenience getter for easy access to form fields
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         .pipe(first())
         .subscribe(
             data => {
-                this.authenticationService.showMenu();
+                this.authenticationService.hideLogin();
                 this.router.navigate([this.returnUrl]);
             },
             error => {

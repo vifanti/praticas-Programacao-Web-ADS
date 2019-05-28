@@ -9,7 +9,7 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent implements OnInit, AfterContentChecked {
 
     collapedSideBar: boolean;
-    telaLogin = false;
+    screenPicker: string;
 
     constructor(private authService: AuthService) {}
 
@@ -20,8 +20,8 @@ export class AppComponent implements OnInit, AfterContentChecked {
     ngAfterContentChecked(): void {
         // Called after every check of the component's or directive's content.
         // Add 'implements AfterContentChecked' to the class.
-        this.authService.hideOrShowMenu.subscribe(
-            showLogin => this.telaLogin = showLogin
+        this.authService.screenPicker.subscribe(
+            tela => this.screenPicker = tela
         );
     }
 

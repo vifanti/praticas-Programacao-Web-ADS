@@ -51,8 +51,4 @@ export class HeaderComponent implements OnInit {
     onLoggedout() {
         this.authService.logout();
     }
-
-    onClickLogin() {
-        this.authService.hideMenu();
-    }
 }

@@ -1,9 +1,17 @@
-<app-login *ngIf="telaLogin; else maincontainer"></app-login>
+<div [ngSwitch]="screenPicker">
+<app-login *ngSwitchCase="'login'"></app-login>
 
-<ng-template #maincontainer>
+<app-signup *ngSwitchCase="'signup'"></app-signup>
+
+<div *ngSwitchDefault>
     <app-header></app-header>
     <app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
     <section class="main-container" [ngClass]="{collapsed: collapedSideBar}">
         <router-outlet></router-outlet>
     </section>
-</ng-template>
+    </div>
+</div>
+
+
+
+
