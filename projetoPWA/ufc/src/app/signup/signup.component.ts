@@ -27,13 +27,13 @@ export class SignupComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-
     this.signupForm = this.formBuilder.group(
       {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['', Validators.required],
+        admin: [true]
       },
       {
         validator: MustMatch('password', 'confirmPassword')
@@ -67,7 +67,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.api.addUser(this.signupForm.value).subscribe(
       res => {
         this.authenticationService.startSession(res);
-        this.router.navigate(['/']);
+        if (res) {
+          this.router.navigate(['/']);
+        }
       },
       err => {
         console.log(err);

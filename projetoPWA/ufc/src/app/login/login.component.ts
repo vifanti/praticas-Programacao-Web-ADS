@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         .pipe(first())
         .subscribe(
             data => {
+                console.log(data);
                 this.authenticationService.hideLogin();
                 this.router.navigate([this.returnUrl]);
             },
