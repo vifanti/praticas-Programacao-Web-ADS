@@ -29,6 +29,7 @@ import { LutadorNovoComponent } from './lutador-novo/lutador-novo.component';
 import { LutadoresComponent } from './lutadores/lutadores.component';
 import { PesquisaAleatoriaComponent } from './pesquisa-aleatoria/pesquisa-aleatoria.component';
 import { SignupComponent } from './signup/signup.component';
+import { UsersComponent } from './users/users.component';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');
@@ -66,7 +67,8 @@ export function tokenGetter() {
       LutadorNovoComponent,
       LutadoresComponent,
       PesquisaAleatoriaComponent,
-      SignupComponent
+      SignupComponent,
+      UsersComponent
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent]

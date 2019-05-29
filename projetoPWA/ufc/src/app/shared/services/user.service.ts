@@ -16,12 +16,30 @@ const apiUrl = 'https://localhost:3000/users';
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  getUsers(): Observable<User[]> {
+    return this.http
+      .get<User[]>(apiUrl + '?key=4ccc9336b467b9cf58051ea123493ef114eae029')
+      .pipe(catchError(this.handleError('getUsers', [])));
+  }
+
+  searchUsers(termo: string): Observable<User[]> {
+    let query = '';
+    if (!termo.trim()) {
+      return of([]);
+    }
+    if (termo.trim()) {
+      query += '&nome=' + termo;
+    }
+
+    return this.http
+      .get<User[]>(apiUrl + '/search?key=4ccc9336b467b9cf58051ea123493ef114eae029' + query)
+      .pipe(catchError(this.handleError<User[]>('searchUsers', [])));
+  }
+
   addUser(user: User): Observable<User> {
     const salt = bcrypt.genSaltSync(10);
     user.password = bcrypt.hashSync(user.password, salt);
-    return this.http.post<User>(apiUrl, user, httpOptions).pipe(
-      catchError(this.handleError<User>('addUser'))
-    );
+    return this.http.post<User>(apiUrl, user, httpOptions).pipe(catchError(this.handleError<User>('addUser')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -27,7 +27,6 @@ export class AuthService {
     if (!user) {
       return false;
     }
-    console.log(this.jwtHelper.isTokenExpired(user.token));
     return !this.jwtHelper.isTokenExpired(user.token);
   }
 

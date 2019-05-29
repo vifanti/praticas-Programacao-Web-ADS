@@ -12,6 +12,7 @@ import { PesquisaAleatoriaComponent } from './pesquisa-aleatoria/pesquisa-aleato
 import { SignupComponent } from './signup/signup.component';
 import { HistoriaUfcComponent } from './historia-ufc/historia-ufc.component';
 import { DesenvolvedoresComponent } from './desenvolvedores/desenvolvedores.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
     // canActivate: [AuthGuard]
@@ -36,6 +37,7 @@ const routes: Routes = [
     { path: 'verifica-categoria', component: VerificaCategoriaComponent },
     { path: 'historia-ufc', component: HistoriaUfcComponent },
     { path: 'desenvolvedores', component: DesenvolvedoresComponent },
+    { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
