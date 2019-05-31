@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 
 // const apiUrl = 'https://localhost:3000/';
-const apiUrl = '54.94.211.199:3000';
+const apiUrl = 'https://54.94.211.199:3000';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +36,9 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(apiUrl + 'users/authenticate', { email, password }).pipe(
+    const api = apiUrl + '/users/authenticate';
+    console.log(api);
+    return this.http.post<any>(api, { 'email': email, 'password': password }).pipe(
       map(user => {
         this.startSession(user);
         return user;
