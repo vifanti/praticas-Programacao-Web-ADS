@@ -5,8 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 
-const apiUrl = 'https://localhost:3000/';
-// const apiUrl = 'http://18.231.176.240:3000';
+// const apiUrl = 'https://localhost:3000/';
+const apiUrl = 'http://54.94.211.199:3000';
 @Injectable({
   providedIn: 'root'
 })

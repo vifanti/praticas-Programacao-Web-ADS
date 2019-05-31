@@ -8,8 +8,8 @@ import * as bcrypt from 'bcryptjs';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'https://localhost:3000/users';
-// const apiUrl = 'http://18.231.176.240:3000/users';
+// const apiUrl = 'https://localhost:3000/users';
+const apiUrl = 'http://54.94.211.199:3000/users';
 
 @Injectable({
   providedIn: 'root'

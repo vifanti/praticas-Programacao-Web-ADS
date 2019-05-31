@@ -7,8 +7,8 @@ import { Lutador } from '../models/lutador';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'https://localhost:3000/lutador';
-// const apiUrl = 'http://18.231.176.240:3000/lutador';
+// const apiUrl = 'https://localhost:3000/lutador';
+const apiUrl = 'http://54.94.211.199:3000/lutador';
 
 @Injectable({
   providedIn: 'root'
