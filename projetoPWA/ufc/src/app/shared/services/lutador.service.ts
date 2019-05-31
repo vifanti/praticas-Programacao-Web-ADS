@@ -8,7 +8,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 // const apiUrl = 'https://localhost:3000/lutador';
-const apiUrl = '54.94.211.199:3000/lutador';
+const apiUrl = 'https://54.94.211.199:3000/lutador';
 
 @Injectable({
   providedIn: 'root'
