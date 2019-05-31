@@ -9,6 +9,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const apiUrl = 'https://localhost:3000/users';
+// const apiUrl = 'http://18.231.176.240:3000/users';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +24,9 @@ export class UserService {
   }
 
   searchUsers(termo: string): Observable<User[]> {
-    let query = '';
-    if (!termo.trim()) {
-      return of([]);
-    }
-    if (termo.trim()) {
-      query += '&nome=' + termo;
-    }
-
-    return this.http
-      .get<User[]>(apiUrl + '/search?key=4ccc9336b467b9cf58051ea123493ef114eae029' + query)
-      .pipe(catchError(this.handleError<User[]>('searchUsers', [])));
+    return this.http.get<User[]>(apiUrl + '/search?key=4ccc9336b467b9cf58051ea123493ef114eae029&name=' + termo).pipe(
+      catchError(this.handleError<User[]>('searchUsers', []))
+    );
   }
 
   addUser(user: User): Observable<User> {
