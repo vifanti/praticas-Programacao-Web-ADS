@@ -36,16 +36,15 @@ export class LutadorService {
     }
 
     return this.http.get<Lutador[]>(apiUrl + '/pesquisa?key=4ccc9336b467b9cf58051ea123493ef114eae029' + query).pipe(
-      tap(_ => console.log(`Encontrou lutador que começa com: "${termo}"`)),
+      tap(_ => console.log('Encontrou lutador que começa com: ' + termo)),
       catchError(this.handleError<Lutador[]>('pesquisaLutadores', []))
     );
   }
 
   getLutador(id: number): Observable<Lutador> {
-    const url = `${apiUrl}/${id}`;
+    const url = apiUrl + '/' + id;
     return this.http.get<Lutador>(url).pipe(
-      tap(_ => console.log(`leu o lutador id=${id}`)),
-      catchError(this.handleError<Lutador>(`getLutador id=${id}`))
+      catchError(this.handleError<Lutador>('getLutador id=' + id))
     );
   }
 
@@ -56,24 +55,21 @@ export class LutadorService {
 
   addLutador(lutador): Observable<Lutador> {
     return this.http.post<Lutador>(apiUrl, lutador, httpOptions).pipe(
-      tap(_ => console.log(`adicionou o lutador com w/ id=${lutador._id}`)),
       catchError(this.handleError<Lutador>('addLutador'))
     );
   }
 
   updateLutador(id, lutador): Observable<any> {
-    const url = `${apiUrl}/${id}`;
+    const url = apiUrl + '/' + id;
     return this.http.put(url, lutador, httpOptions).pipe(
-      tap(_ => console.log(`atualiza o lutador com id=${id}`)),
       catchError(this.handleError<any>('updateLutador'))
     );
   }
 
   deleteLutador(id): Observable<Lutador> {
-    const url = `${apiUrl}/${id}`;
+    const url = apiUrl + '/' + id;
 
     return this.http.delete<Lutador>(url, httpOptions).pipe(
-      tap(_ => console.log(`remove o lutador com id=${id}`)),
       catchError(this.handleError<Lutador>('deleteLutador'))
     );
   }

@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${apiUrl}users/authenticate`, { email, password }).pipe(
+    return this.http.post<any>(apiUrl + 'users/authenticate', { email, password }).pipe(
       map(user => {
         this.startSession(user);
         return user;
