@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 
 // const apiUrl = 'https://localhost:3000/';
-const apiUrl = 'https://54.94.211.199:3000';
+const apiUrl = '54.94.211.199:3000';
 @Injectable({
   providedIn: 'root'
 })
