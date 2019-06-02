@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +11,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { PageHeaderModule } from './shared/modules/page-header/page-header.module';
 
-import { environment } from '../environments/environment';
 import { AuthGuard } from './shared';
 
 import { AppComponent } from './app.component';
@@ -30,6 +28,8 @@ import { LutadoresComponent } from './lutadores/lutadores.component';
 import { PesquisaAleatoriaComponent } from './pesquisa-aleatoria/pesquisa-aleatoria.component';
 import { SignupComponent } from './signup/signup.component';
 import { UsersComponent } from './users/users.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function tokenGetter() {
     return localStorage.getItem('access_token');

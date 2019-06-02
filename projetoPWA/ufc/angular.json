@@ -53,8 +53,8 @@
                   "maximumError": "5mb"
                 }
               ],
-              "serviceWorker": true
-              
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
@@ -92,6 +92,7 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
+              "src/manifest.json",
               "src/manifest.json"
             ]
           }
