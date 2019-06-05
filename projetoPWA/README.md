@@ -13,3 +13,10 @@ $ npm start
 # the produced code can be deployed (rsynced) to a remote server
 $ npm run build
 ```
+
+## Teste da aplicação
+
+$ ng build --prod
+$ cd dist/
+$ npm install -g angular-http-server
+$ angular-http-server -p 8081 -o
